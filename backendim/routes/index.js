@@ -9,6 +9,9 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
+var maxid = 0;
+
+
 
 router.post('/', (req, res) => {
 
@@ -21,22 +24,33 @@ router.post('/', (req, res) => {
   });
 
   var date = new Date().toJSON().slice(0, 10)
-
+  
   connection.connect()
-  id = 12
-  console.log(req.body.haberBaslik)
-  var post  = {haberresim : req.body.haberResim,
-   haberbaslik: req.body.haberBasligi,
-   habericerik: req.body.haberIcerigi,
-   haberturu: req.body.haberTuru,
-   yayinlanmatarihi: date,
-   haberid: id };
-  var query = connection.query('INSERT INTO haber SET ?', post, function (error, results, fields) {
-    if (error) throw error;
-    // Neat!
+
+  var getidquery = connection.query('SELECT max(idhaber) as max from haber', function (error, results) {
+    if (error){
+      throw error;
+    }
+    else{
+        maxid = results[0].max + 1;
+        console.log("Fonksiyon içinde" + maxid)
+        var post  = {haberresim : req.body.haberResim,
+        haberbaslik: req.body.haberBasligi,
+        habericerik: req.body.haberIcerigi,
+        haberturu: req.body.haberTuru,
+        yayinlanmatarihi: date,
+        idhaber: maxid };
+         var query = connection.query('INSERT INTO haber SET ?', post, function (error, results, fields) {
+         if (error) throw error;
+         // Neat!
+       });
+    }
   });
-console.log(query.sql);
-  id= id+1; 
+    console.log("fonksiyon dışında:" +maxid)
+    
+
+  
+   
    
   res.render('index', { title: 'Express' })
 
@@ -46,3 +60,4 @@ console.log(query.sql);
 
 
 module.exports = router;
+
