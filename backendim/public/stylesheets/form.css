@@ -1,0 +1,39 @@
+
+@media  only screen and (min-device-width: 768px) 
+{
+    .form-container {
+      padding: 5%;
+      background: #ffffff;
+      border: 9px solid #f2f2f2;            
+      max-width: 520px;
+      margin: auto;
+    }
+
+}
+
+h1, p 
+{
+  text-align: center;
+}
+
+input, textarea
+{
+  align-content: center;
+  width: 100%;
+}    
+
+
+#haberIcerigi
+{
+  height: 300px;
+}
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+

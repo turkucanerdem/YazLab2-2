@@ -1,6 +1,24 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  p hello hello hello
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Haber Gir
+        div.form-container
+          form(method='post' action='/')
+            div.form-group
+              label(for='haberResim') Haber Resmi:
+              input#haberBasligi.form-control(type='file', name='haberResim', accept="image")
+            div.form-group
+              label(for='haberBasligi') Haber Başlığı:
+              input#haberBasligi.form-control(type='text', placeholder='başık' name='haberBasligi')
+            div.form-group
+              label(for='haberTuru') Haber Türü:
+              input#haberTuru.form-control(type='text', placeholder='haberTuru' name='haberTuru')
+            div.form-group
+              label(for='haberIcerigi') Haberin İçeriği:
+              textarea#haberIcerigi(name="haberIcerigi", cols="40", rows="5",placeholder='haber')
+            div.form-group
+              input(type='submit', value='Create')
+            

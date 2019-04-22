@@ -38,4 +38,23 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+//Frontendden bilgi al
+// Parse URL-encoded bodies (as sent by HTML forms)
+
+const bodyParser = require('body-parser')
+
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+)
+
+app.use(bodyParser.json())
+
+app.post('/habergir', (req, res) => {
+  console.log(req.body.haberIcerigi)
+})
+
+
 module.exports = app;
