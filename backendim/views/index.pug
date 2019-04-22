@@ -15,7 +15,11 @@ block content
               input#haberBasligi.form-control(type='text', placeholder='başlık' name='haberBasligi')
             div.form-group
               label(for='haberTuru') Haber Türü:
-              input#haberTuru.form-control(type='text', placeholder='haberTuru' name='haberTuru')
+              select#haberTuru.form-control(name='haberTuru')
+                option(value="gundem") Gündem
+                option(value="spor") Spor
+                option(value="egitim") Egitim
+                option(value="ekonomi") Ekonomi
             div.form-group
               label(for='haberIcerigi') Haberin İçeriği:
               textarea#haberIcerigi(name="haberIcerigi", cols="40", rows="5",placeholder='haber')
