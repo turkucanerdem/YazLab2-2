@@ -5,6 +5,12 @@ block content
     .row
       .col-md-6.col-md-offset-3
         h1.display-4.m-b-2 Haber Gir
+        script(src="/socket.io/socket.io.js")
+        script.
+          var socket = io('//localhost:3000');
+          socket.on('socketToMe', function (data) {
+            console.log(data);
+          });
         div.form-container
           form(method='post' action='/')
             div.form-group

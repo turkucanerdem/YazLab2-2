@@ -3,8 +3,14 @@
 /**
  * Module dependencies.
  */
-
+/*sonradan çıkarıldı
 var app = require('../app');
+*/
+
+//sonradan eklendi
+var app = require('../app').app;
+//
+
 var debug = require('debug')('backendim:server');
 var http = require('http');
 
@@ -22,7 +28,13 @@ app.set('port', port);
  * Create HTTP server.
  */
 
+/* sonradan çıkarıldı
 var server = http.createServer(app);
+*/
+
+//sonradan eklendi
+var server = require('../app').server;
+//
 
 
 
