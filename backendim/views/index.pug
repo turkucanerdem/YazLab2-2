@@ -25,4 +25,12 @@ block content
               textarea#haberIcerigi(name="haberIcerigi", cols="40", rows="5",placeholder='haber')
             div.form-group
               input(type='submit', value='Create')
+          form(method='post' action='/api/begenme')
+            div.form-group
+              label(for='idhaber') Haber id:
+              input#haverResmi.form-control(type='text', name='idhaber')
+            div.form-group
+              input(type='submit', value='Create')
+          
+
             

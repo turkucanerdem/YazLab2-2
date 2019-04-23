@@ -1,14 +1,24 @@
 var express = require('express');
 app=express();
+
+
+
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.json()); 
+
+
+
 
 var router = express.Router();
+
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
+
 var maxid = 0;
 
 
@@ -55,6 +65,56 @@ router.post('/', (req, res) => {
   res.render('index', { title: 'Express' })
 
 });
+
+//23.04.2019dan sonrakiler
+
+router.post('/api/begenme', function(req, res, next) {
+  var haberid = req.body.idhaber
+  console.log(haberid)
+
+  var mysql = require('mysql')
+  var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'vergaz34',
+    database : 'yazlab22'
+  });
+
+  connection.connect()
+
+  var query = connection.query('UPDATE  haber SET begenmesayisi = begenmesayisi + 1 WHERE idhaber = ?', [haberid], function (error, results, fields) {
+    if (error) throw error;
+    // Neat!
+  });
+
+  
+  
+  
+  res.render('index', { title: 'Express' });
+});
+
+router.post('/api/begenmeme', function(req, res, next) {
+  var haberid = req.body.idhaber
+  console.log(haberid)
+
+  var mysql = require('mysql')
+  var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'vergaz34',
+    database : 'yazlab22'
+  });
+  
+  connection.connect()
+
+  var query = connection.query('UPDATE  haber SET begenmemesayisi = begenmemesayisi + 1 WHERE idhaber = ?', [haberid], function (error, results, fields) {
+    if (error) throw error;
+    // Neat!
+  });
+
+  res.render('index', { title: 'Express' });
+});
+
 
 
 
