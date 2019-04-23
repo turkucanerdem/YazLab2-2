@@ -22,7 +22,9 @@ app.set('view engine', 'pug');
 
 //sonradan ekleme
 app.use(function(req, res, next){
+  
   res.io = io;
+  
   next();
 });
 //
@@ -55,6 +57,23 @@ app.use(function(err, req, res, next) {
 /* sonradan çıkarıldı
 module.exports = app;
 */
+
+//sonradan eklendi
+io.on('connection', (socket) => {
+  io.emit('this', { will: 'be received by everyone'});
+  console.log('user connected')
+  
+  socket.on('join', function(nickname) {
+  
+          console.log("joinlendi")
+  
+          
+      });
+ 
+  });
+ 
+//
+
 
 //sonradan eklendi
 module.exports = {app: app, server: server};

@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   //sonradan eklendi
-  res.io.emit("socketToMe", "users");
+  //res.io.emit("socketToMe", "users");
   //
   res.send('respond with a resource.');
 });

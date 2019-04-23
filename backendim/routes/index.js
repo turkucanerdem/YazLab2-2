@@ -16,13 +16,16 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  //sonradan eklendi
+  res.io.emit("socketToMe", "users");
+  //
   res.render('index', { title: 'Express' });
 });
 
 var maxid = 0;
 
 
-
+//Haber Ekleme
 router.post('/', (req, res) => {
 
   var mysql = require('mysql')
@@ -67,8 +70,10 @@ router.post('/', (req, res) => {
 });
 
 //23.04.2019dan sonrakiler
-
+//Beğenme isteği
 router.post('/api/begenme', function(req, res, next) {
+
+
   var haberid = req.body.idhaber
   console.log(haberid)
 
@@ -93,6 +98,7 @@ router.post('/api/begenme', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+//beğenmeme isteği
 router.post('/api/begenmeme', function(req, res, next) {
   var haberid = req.body.idhaber
   console.log(haberid)
@@ -116,6 +122,9 @@ router.post('/api/begenmeme', function(req, res, next) {
 });
 
 
+app.get('/api/haberyolla', function(req, res){
+  res.io.emit
+});
 
 
 
