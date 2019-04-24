@@ -94,8 +94,8 @@ router.post('/api/begenme', function(req, res, next) {
 
   
   
-  
-  res.render('index', { title: 'Express' });
+  //24.0.4 de comment e alındı
+  //res.render('index', { title: 'Express' });
 });
 
 //beğenmeme isteği

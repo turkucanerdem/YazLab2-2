@@ -5,7 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 //sonradan ekleme
 var bodyParser = require('body-parser');
+var request = require('request')
+
 //
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -60,15 +63,106 @@ module.exports = app;
 
 //sonradan eklendi
 io.on('connection', (socket) => {
-  io.emit('this', { will: 'be received by everyone'});
+  //io.emit('this', { will: 'be received by everyone'});
   console.log('user connected')
   
-  socket.on('join', function(nickname) {
+  socket.on('begen', function(begeni) {
   
-          console.log("joinlendi")
-  
-          
+        console.log("gönderi beğenildi")
+        /*console.log(begeni)
+         //24ünde eklendi
+        request.post('http://localhost:3000/api/begenme', begeni
+        , (error, res, body) => {
+        console.log()
+        if (error) {
+          console.error(error)
+          return
+        }
+        console.log(`statusCode: ${res.statusCode}`)
+        console.log(body)
+      })*/
+
+      //24.04 ekleme
+      var mysql = require('mysql')
+      var connection = mysql.createConnection({
+        host     : 'localhost',
+        user     : 'root',
+        password : 'vergaz34',
+        database : 'yazlab22'
       });
+      haberid=begeni.idhaber
+      console.log(haberid)
+      connection.connect()
+
+      var query = connection.query('UPDATE  haber SET begenmesayisi = begenmesayisi + 1 WHERE idhaber = ?', [haberid], function (error, results, fields) {
+        if (error) throw error;
+        // Neat!
+      });
+      //
+
+      });
+
+
+       socket.on('begenme', function(begeni) {
+  
+        console.log("gönderi beğenildi")
+        /*console.log(begeni)
+         //24ünde eklendi
+        request.post('http://localhost:3000/api/begenme', begeni
+        , (error, res, body) => {
+        console.log()
+        if (error) {
+          console.error(error)
+          return
+        }
+        console.log(`statusCode: ${res.statusCode}`)
+        console.log(body)
+      })*/
+
+      //24.04 ekleme
+      var mysql = require('mysql')
+      var connection = mysql.createConnection({
+        host     : 'localhost',
+        user     : 'root',
+        password : 'vergaz34',
+        database : 'yazlab22'
+      });
+      haberid=begeni.idhaber
+      console.log(haberid)
+      connection.connect()
+
+      var query = connection.query('UPDATE  haber SET begenmesayisi = begenmesayisi + 1 WHERE idhaber = ?', [haberid], function (error, results, fields) {
+        if (error) throw error;
+        // Neat!
+      });
+      //
+
+            });
+      
+      socket.on('begen', function(begeni) {
+  
+        console.log("gönderi beğenilmedi")
+
+      
+        //24.04 ekleme
+        var mysql = require('mysql')
+        var connection = mysql.createConnection({
+          host     : 'localhost',
+          user     : 'root',
+          password : 'vergaz34',
+          database : 'yazlab22'
+          });
+         haberid=begeni.idhaber
+         console.log(haberid)
+         connection.connect()
+      
+          var query = connection.query('UPDATE  haber SET begenmemesayisi = begenmemesayisi + 1 WHERE idhaber = ?', [haberid], function (error, results, fields) {
+         if (error) throw error;
+              // Neat!
+          });
+            //
+      
+           });
  
   });
  

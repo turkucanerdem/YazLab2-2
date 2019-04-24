@@ -22,9 +22,10 @@ const instructions = Platform.select({
 });
 
 buttonClickListener = () => {
+  socket.emit('join', 123);
   socket.on('connection', function (socketClientID) {
     console.log('Connection to server established. SocketID is',socketClientID);
-    socket.emit('join', 123);
+    
 });
 };
 
