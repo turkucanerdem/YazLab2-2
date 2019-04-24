@@ -1,7 +1,7 @@
 var express = require('express');
 app=express();
 
-
+//SOCKET IO 2.2.0 dan 1.7.3 PACKAGE.JSON
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true })); 
@@ -17,7 +17,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   //sonradan eklendi
-  res.io.emit("socketToMe", "users");
+  //res.io.emit("socketToMe", "users");
   //
   res.render('index', { title: 'Express' });
 });

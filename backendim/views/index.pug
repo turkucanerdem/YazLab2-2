@@ -8,9 +8,13 @@ block content
         script(src="/socket.io/socket.io.js")
         script.
           var socket = io('//localhost:3000');
-          socket.on('socketToMe', function (data) {
+          /*socket.on('socketToMe', function (data) {
             console.log(data);
+          });*/
+          socket.emit("join", function(data) {
+          console.log(data);
           });
+          socket.emit('join','mesage')
         div.form-container
           form(method='post' action='/')
             div.form-group
