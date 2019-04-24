@@ -103,7 +103,7 @@ io.on('connection', (socket) => {
       });
 
 
-       socket.on('begenme', function(begeni) {
+       socket.on('begen', function(begeni) {
   
         console.log("gönderi beğenildi")
         /*console.log(begeni)
@@ -138,8 +138,35 @@ io.on('connection', (socket) => {
       //
 
             });
+
+
+      socket.on('haberAl', function(haberTurList) {
+      console.log(haberTurList)
+      //24.04 ekleme
+      var mysql = require('mysql')
+      var connection = mysql.createConnection({
+        host     : 'localhost',
+        user     : 'root',
+        password : 'vergaz34',
+        database : 'yazlab22'
+      });
       
-      socket.on('begen', function(begeni) {
+      haberturu = haberTurList.haberturu;
+      console.log(haberturu);
+      
+      connection.connect()
+
+      var query = connection.query('Select * From  haber WHERE haberturu in (?)', haberturu, function (error, results, fields) {
+        console.log(results)
+        if (error) throw error;
+        // Neat!
+      });
+
+      //
+
+            });      
+      
+      socket.on('begenme', function(begeni) {
   
         console.log("gönderi beğenilmedi")
 
