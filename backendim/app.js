@@ -140,6 +140,7 @@ io.on('connection', (socket) => {
             });
 
 
+
       socket.on('haberAl', function(haberTurList) {
       console.log(haberTurList)
       //24.04 ekleme
@@ -158,13 +159,18 @@ io.on('connection', (socket) => {
 
       var query = connection.query('Select * From  haber WHERE haberturu in (?)', haberturu, function (error, results, fields) {
         console.log(results)
+        socket.emit('haberGonder',results)
         if (error) throw error;
         // Neat!
       });
 
+      //console.log(query)
+
       //
 
-            });      
+            }); 
+            
+            
       
       socket.on('begenme', function(begeni) {
   
