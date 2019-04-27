@@ -103,41 +103,7 @@ io.on('connection', (socket) => {
       });
 
 
-       socket.on('begen', function(begeni) {
   
-        console.log("gönderi beğenildi")
-        /*console.log(begeni)
-         //24ünde eklendi
-        request.post('http://localhost:3000/api/begenme', begeni
-        , (error, res, body) => {
-        console.log()
-        if (error) {
-          console.error(error)
-          return
-        }
-        console.log(`statusCode: ${res.statusCode}`)
-        console.log(body)
-      })*/
-
-      //24.04 ekleme
-      var mysql = require('mysql')
-      var connection = mysql.createConnection({
-        host     : 'localhost',
-        user     : 'root',
-        password : 'vergaz34',
-        database : 'yazlab22'
-      });
-      haberid=begeni.idhaber
-      console.log(haberid)
-      connection.connect()
-
-      var query = connection.query('UPDATE  haber SET begenmesayisi = begenmesayisi + 1 WHERE idhaber = ?', [haberid], function (error, results, fields) {
-        if (error) throw error;
-        // Neat!
-      });
-      //
-
-            });
 
 
 
@@ -196,6 +162,32 @@ io.on('connection', (socket) => {
             //
       
            });
+
+
+           socket.on('goruntule', function(begeni) {
+  
+            console.log("gönderi goruntulendi")
+    
+          
+            //24.04 ekleme
+            var mysql = require('mysql')
+            var connection = mysql.createConnection({
+              host     : 'localhost',
+              user     : 'root',
+              password : 'vergaz34',
+              database : 'yazlab22'
+              });
+             haberid=begeni.idhaber
+             console.log(haberid)
+             connection.connect()
+          
+              var query = connection.query('UPDATE  haber SET goruntulenmesayisi = goruntulenmesayisi + 1 WHERE idhaber = ?', [haberid], function (error, results, fields) {
+             if (error) throw error;
+                  // Neat!
+              });
+                //
+          
+               });
  
   });
  
